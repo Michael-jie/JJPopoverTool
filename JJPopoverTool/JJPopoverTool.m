@@ -15,6 +15,10 @@
 
 @interface ArrowView : UIView
 @property (nonatomic, strong) UIColor *arrowBgColor;
+
+@end
+@interface JJPopoverTool ()<UIGestureRecognizerDelegate>
++ (NSMutableSet *)getCopyPassthroughViews;
 @end
 @implementation ArrowView : UIView
 
@@ -27,12 +31,10 @@
     return self;
 }
 
-
 - (void)setArrowBgColor:(UIColor *)arrowBgColor {
     _arrowBgColor = arrowBgColor;
     [self setNeedsDisplay];
 }
-
 
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
@@ -60,6 +62,7 @@
 
 @interface PopoverView : UIView
 @end
+
 @implementation PopoverView
 
 
@@ -90,8 +93,6 @@
 
 @end
 
-@interface JJPopoverTool ()<UIGestureRecognizerDelegate>
-@end
 
 @implementation JJPopoverTool
 // 使用Set集合效率高

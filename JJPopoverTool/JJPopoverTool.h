@@ -23,7 +23,5 @@
  */
 + (void)dismiss;
 
-+ (NSMutableSet *)getCopyPassthroughViews;
-
 
 @end
