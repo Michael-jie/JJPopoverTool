@@ -41,8 +41,6 @@
     }
     
     cell.textLabel.text = @"测试123";
-    
-    
     return  cell;
 }
 
@@ -51,30 +49,40 @@
 }
 
 - (IBAction)a:(UIButton *)sender {
-    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 140, 44 * 3)];
+    tableView.dataSource =self;
+    tableView.delegate = self;
     
-    [JJPopoverTool presentContentView:contentView pointToItem:sender passThroughViews:@[self.moreItem.customView]];
+    [JJPopoverTool presentContentView:tableView pointToItem:sender passThroughViews:@[self.moreItem.customView]];
 }
 
 - (IBAction)b:(UIButton *)sender {
-    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 140, 44 * 3)];
+    tableView.dataSource =self;
+    tableView.delegate = self;
     
-    [JJPopoverTool presentContentView:contentView pointToItem:sender passThroughViews:nil];
+    [JJPopoverTool presentContentView:tableView pointToItem:sender passThroughViews:nil];
 }
 - (IBAction)c:(UIButton *)sender {
-    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 140, 44 * 3)];
+    tableView.dataSource =self;
+    tableView.delegate = self;
     
-    [JJPopoverTool presentContentView:contentView pointToItem:sender passThroughViews:nil];
+    [JJPopoverTool presentContentView:tableView pointToItem:sender passThroughViews:nil];
 }
 - (IBAction)d:(UIButton *)sender {
-    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 140, 44 * 3)];
+    tableView.dataSource =self;
+    tableView.delegate = self;
     
-    [JJPopoverTool presentContentView:contentView pointToItem:sender passThroughViews:nil];
+    [JJPopoverTool presentContentView:tableView pointToItem:sender passThroughViews:nil];
 }
 - (IBAction)e:(UIButton *)sender {
-    UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 100)];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 140, 44 * 3)];
+    tableView.dataSource =self;
+    tableView.delegate = self;
     
-    [JJPopoverTool presentContentView:contentView pointToItem:sender passThroughViews:nil];
+    [JJPopoverTool presentContentView:tableView pointToItem:sender passThroughViews:nil];
 }
 
 @end
