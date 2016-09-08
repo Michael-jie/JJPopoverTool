@@ -25,9 +25,7 @@
     tableView.delegate = self;
     [JJPopoverTool presentContentView:tableView
                             pointToItem:sender
-                            passThroughViews:@[self.a,self.b,self.c,self.d,self.e]];
-    tableView.backgroundColor = [UIColor redColor];
-    
+                            passThroughViews:@[self.a, self.b]];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

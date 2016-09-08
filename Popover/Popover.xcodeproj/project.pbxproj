@@ -14,6 +14,7 @@
 		2889A6FA1D5F18A8003E45F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2889A6F91D5F18A8003E45F2 /* Assets.xcassets */; };
 		2889A6FD1D5F18A8003E45F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2889A6FB1D5F18A8003E45F2 /* LaunchScreen.storyboard */; };
 		28AE51541D6EF3F900620A7B /* JJPopoverTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AE51531D6EF3F900620A7B /* JJPopoverTool.m */; };
+		28D32C271D7C34770037BC76 /* AlwaysScroll.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D32C261D7C34770037BC76 /* AlwaysScroll.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,8 @@
 		2889A6FE1D5F18A8003E45F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		28AE51521D6EF3F900620A7B /* JJPopoverTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JJPopoverTool.h; sourceTree = "<group>"; };
 		28AE51531D6EF3F900620A7B /* JJPopoverTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JJPopoverTool.m; sourceTree = "<group>"; };
+		28D32C251D7C34770037BC76 /* AlwaysScroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlwaysScroll.h; sourceTree = "<group>"; };
+		28D32C261D7C34770037BC76 /* AlwaysScroll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlwaysScroll.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +64,8 @@
 		2889A6EC1D5F18A8003E45F2 /* Popover */ = {
 			isa = PBXGroup;
 			children = (
+				28D32C251D7C34770037BC76 /* AlwaysScroll.h */,
+				28D32C261D7C34770037BC76 /* AlwaysScroll.m */,
 				28AE51511D6EF3F900620A7B /* JJPopoverTool */,
 				2889A6F01D5F18A8003E45F2 /* AppDelegate.h */,
 				2889A6F11D5F18A8003E45F2 /* AppDelegate.m */,
@@ -165,6 +170,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2889A6F51D5F18A8003E45F2 /* ViewController.m in Sources */,
+				28D32C271D7C34770037BC76 /* AlwaysScroll.m in Sources */,
 				2889A6F21D5F18A8003E45F2 /* AppDelegate.m in Sources */,
 				2889A6EF1D5F18A8003E45F2 /* main.m in Sources */,
 				28AE51541D6EF3F900620A7B /* JJPopoverTool.m in Sources */,
@@ -282,6 +288,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Popover/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.520.Popover;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -296,6 +303,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Popover/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.520.Popover;
 				PRODUCT_NAME = "$(TARGET_NAME)";

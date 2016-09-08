@@ -13,29 +13,38 @@
 #define kScreenW [UIScreen mainScreen].bounds.size.width
 #define kScreenH [UIScreen mainScreen].bounds.size.height
 
-@interface ArrowView : UIView
-@property (nonatomic, strong) UIColor *arrowBgColor;
-
-@end
 @interface JJPopoverTool ()<UIGestureRecognizerDelegate>
+// 用于获取所有复制的控件
 + (NSMutableSet *)getCopyPassthroughViews;
 @end
-@implementation ArrowView : UIView
 
+#pragma mark - 箭头视图
+@interface ArrowView : UIView
+@property (nonatomic, strong) UIColor *arrowBgColor;
+@end
+
+@implementation ArrowView : UIView
 - (instancetype)init
 {
     self = [super init];
     if (self) {
+        // 箭头的颜色
         _arrowBgColor = [UIColor whiteColor];
     }
     return self;
 }
 
+/**
+ *  设置箭头的填充颜色
+ */
 - (void)setArrowBgColor:(UIColor *)arrowBgColor {
     _arrowBgColor = arrowBgColor;
     [self setNeedsDisplay];
 }
 
+/**
+ *  绘制箭头
+ */
 - (void)drawRect:(CGRect)rect {
     [super drawRect:rect];
     
@@ -60,11 +69,11 @@
 }
 @end
 
+#pragma mark - 朦板视图
 @interface PopoverView : UIView
 @end
 
 @implementation PopoverView
-
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -76,10 +85,12 @@
     return self;
 }
 
+#pragma mark - 点击事件 取消过滤的点击
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     
     for (UIView *subView in [JJPopoverTool getCopyPassthroughViews]) {
         // 如果点击的是过滤的控件 则该控件不接受事件
+        // 这里会造成由原始的控件接收事件,之后弹出popover,会把之前的popover取消
         if (CGRectContainsPoint(subView.frame, point)) {
             return  nil;
         }
@@ -93,7 +104,7 @@
 
 @end
 
-
+#pragma mark - poopver工具类
 @implementation JJPopoverTool
 // 使用Set集合效率高
 static NSMutableSet *_copyPassthroughViews;
@@ -117,6 +128,17 @@ static NSMutableSet *_copyPassthroughViews;
         for (UIView *subView in keyWindow.subviews) {
             if ([subView isKindOfClass:[PopoverView class]]) {
                 [keyWindow addSubview:copyView];
+                [copyView removeConstraints:copyView.constraints];
+                copyView.translatesAutoresizingMaskIntoConstraints=NO;
+                CGFloat left = copyView.frame.origin.x;
+                CGFloat top = copyView.frame.origin.y;
+                CGFloat width = copyView.frame.size.width;
+                CGFloat height = copyView.frame.size.height;
+                NSArray *constraints1=[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"H:|-%f-[copyView(==%f)]",left, width] options:0 metrics:nil views:NSDictionaryOfVariableBindings(copyView)];
+                
+                NSArray *constraints2=[NSLayoutConstraint constraintsWithVisualFormat:[NSString stringWithFormat:@"V:|-%f-[copyView(==%f)]",top, height] options:0 metrics:nil views:NSDictionaryOfVariableBindings(copyView)];
+                [keyWindow addConstraints:constraints1];
+                [keyWindow addConstraints:constraints2];
             }
         }
     }
@@ -145,22 +167,20 @@ static NSMutableSet *_copyPassthroughViews;
     return  NO;
 }
 
-
 + (void)setPassthroughViews:(NSArray *)passthroughViews {
     for (UIView *passthroughView in passthroughViews) {
+
         // 创建一个新的View(仅仅为了展示)
         NSData * tempArchive = [NSKeyedArchiver archivedDataWithRootObject:passthroughView];
         UIView *copyView = [NSKeyedUnarchiver unarchiveObjectWithData:tempArchive];
-        copyView.userInteractionEnabled = false;
-        
-        // 设置对应的位置
-        CGRect newR = [passthroughView convertRect:passthroughView.bounds toView:nil];
-        copyView.frame = newR;
-        
+        copyView.userInteractionEnabled = NO;
+        copyView.frame = [passthroughView convertRect:passthroughView.bounds toView:nil];
+
         // 添加的集合中
         [_copyPassthroughViews addObject:copyView];
     }
 }
+
 
 + (void)presentContentView:(UIView *)contentView
                 pointToItem:(UIView *)item
@@ -178,6 +198,13 @@ static NSMutableSet *_copyPassthroughViews;
     [self presentContentView:contentView pointToItem:item];
 }
 
+/**
+ *  弹出popover
+ *
+ *  @param contentView      内容
+ *  @param item             指向的位置
+ *  @param passthroughViews 过滤的控件
+ */
 + (void)presentContentView:(UIView *)contentView pointToItem:(UIView *)item {
     
     // 1.创建popover
@@ -261,7 +288,6 @@ static NSMutableSet *_copyPassthroughViews;
             [subView removeFromSuperview];
         }
     }
-    
     [self removeCopyView];
 }
 
