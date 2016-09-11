@@ -104,7 +104,7 @@
 
 @end
 
-#pragma mark - poopver工具类
+//#pragma mark - poopver工具类
 @implementation JJPopoverTool
 // 使用Set集合效率高
 static NSMutableSet *_copyPassthroughViews;
@@ -127,7 +127,7 @@ static NSMutableSet *_copyPassthroughViews;
         UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
         for (UIView *subView in keyWindow.subviews) {
             if ([subView isKindOfClass:[PopoverView class]]) {
-                [keyWindow addSubview:copyView];
+                [subView addSubview:copyView];
                 [copyView removeConstraints:copyView.constraints];
                 copyView.translatesAutoresizingMaskIntoConstraints=NO;
                 CGFloat left = copyView.frame.origin.x;

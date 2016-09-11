@@ -23,5 +23,9 @@
  */
 + (void)dismiss;
 
+/**
+ *  是否弹出了popover
+ */
++ (BOOL)isShowPopover;
 
 @end

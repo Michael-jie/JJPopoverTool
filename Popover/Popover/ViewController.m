@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *c;
 @property (weak, nonatomic) IBOutlet UIButton *d;
 @property (weak, nonatomic) IBOutlet UIButton *e;
+@property (weak, nonatomic) IBOutlet UIButton *f;
 
 @property (weak, nonatomic)  UITableView *tableView;
 @end
@@ -27,6 +28,7 @@
                             pointToItem:sender
                             passThroughViews:@[self.a, self.b]];
 }
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 3;
@@ -45,7 +47,9 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [JJPopoverTool dismiss];
+    if ([JJPopoverTool isShowPopover]) {
+        [JJPopoverTool dismiss];
+    }
 }
 
 - (IBAction)a:(UIButton *)sender {
@@ -78,6 +82,14 @@
     [JJPopoverTool presentContentView:tableView pointToItem:sender passThroughViews:nil];
 }
 - (IBAction)e:(UIButton *)sender {
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 140, 44 * 3)];
+    tableView.dataSource =self;
+    tableView.delegate = self;
+    
+    [JJPopoverTool presentContentView:tableView pointToItem:sender passThroughViews:nil];
+}
+
+- (IBAction)f:(id)sender {
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 140, 44 * 3)];
     tableView.dataSource =self;
     tableView.delegate = self;
