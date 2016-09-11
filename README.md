@@ -1,5 +1,5 @@
 ## 示例效果
-![API文档](../1.gif)
+![JJPopoverTool](../1.gif)
 ## Installation
 ### Using [CocoaPods](http://cocoapods.org)
 
